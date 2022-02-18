@@ -1,0 +1,35 @@
+.taskForm {
+    list-style: none;
+    width: 500px;
+    height: 50px;
+    background-color: #2b2a33;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    border: 1px dashed #7e7a7a;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 12px;
+
+    &__input {
+    background-color: #2b2a33;
+    border: none;
+    margin-right: 1rem;
+    color: #fff;
+    font-size: 1.3rem;
+    flex-grow: 1;
+    }
+
+    &__input:focus {
+        // removes outline when
+        outline: none;
+        background-color: #363434;
+    }
+
+    &__btn {
+        color: #fff;
+        background-color: #e58181;
+        padding: 0.2rem;
+        border-radius: 5px;
+    }
+}

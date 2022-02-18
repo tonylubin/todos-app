@@ -1,0 +1,14 @@
+.homepage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.homepage > p {
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+
+.tasklistSection {
+    margin-top: 2rem;
+}

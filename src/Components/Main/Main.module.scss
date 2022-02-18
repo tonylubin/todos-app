@@ -1,0 +1,18 @@
+.mainPage {
+    height: 85vh;
+    width: 50vw;
+    margin: 30px auto;
+    text-align: start;
+}
+
+.mainPage > h1, p {
+    margin-bottom: 1rem;
+}
+
+span {
+    color: #e58181;
+}
+
+span:hover {
+    cursor: pointer;
+}

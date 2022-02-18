@@ -1,0 +1,44 @@
+.listItem {
+    display: flex;
+    align-items: baseline;
+    padding: 6px 12px;
+    list-style: none;
+    background-color: #2b2a33;
+    width: 500px;
+    height: 50px;
+    margin-bottom: 1rem;
+    gap: 2.5rem;
+    text-align: left;
+
+    &__btn {
+        color: #fff;
+        background-color: #e58181;
+        padding: 0.2rem;
+        border-radius: 5px;
+    }
+
+    &__p {
+        flex: auto;
+        font-size: 1.5rem;
+    }
+
+    &__text {
+        text-decoration: line-through;
+    }
+
+    &__del {
+        // disables ability to click on svg & path in the FontAwesome icon
+        // thus only clicks on <span> element
+        pointer-events: none;
+    }
+
+    &__edit {
+        pointer-events: none;
+    }
+}
+
+// change checkbox colour
+input[type="checkbox"]:checked {
+    accent-color: #e58181;
+}
+
