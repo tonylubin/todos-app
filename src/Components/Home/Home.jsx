@@ -9,9 +9,10 @@ const Home = () => {
   
   const [hasTaskItem, setHasTaskItem] = useState(false);
   
-  // Reference -  to input element
+  // Reference(using "useRef") -  to input element
   const inputElement = useRef();
   
+  // Time of day greeting statement
   let greeting;
   let hour = new Date().getUTCHours();
   if(hour >=0 && hour < 12) {

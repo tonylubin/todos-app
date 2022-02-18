@@ -44,17 +44,16 @@ const TaskList = ({ taskItem }) => {
     getTodos();
   };
 
-  // UPDATE - TODO
-
+  // Display update(input) box & grab todo ID 
   const showUpdateInput = async (e) => {
     setShowUpdate(!showUpdate);
     setUpdateId(await e.target.id);
   };
-
+  
+  // UPDATE - TODO
   const updateTask = async (e) => {
     e.preventDefault();
     let updatedText = e.target.elements[0].value;
-    console.log(updateId)
     const taskRef = doc(db, "Todos", updateId);
     await updateDoc(taskRef, { todo: updatedText });
     setShowUpdate(!showUpdate);
