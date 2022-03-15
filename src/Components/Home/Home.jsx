@@ -38,7 +38,7 @@ const Home = () => {
 
     // form reset to initial values
     inputElement.current.form.reset();
-
+    setHasTaskItem(!hasTaskItem);
   }  
 
 

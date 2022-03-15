@@ -26,7 +26,7 @@ const TaskList = ({ taskItem }) => {
           todo: doc.data().todo,
           completed: doc.data().completed,
         })
-      );
+      ); 
       setTodosList(dbList);
     });
   };
@@ -41,6 +41,7 @@ const TaskList = ({ taskItem }) => {
     // document reference
     const taskRef = doc(db, "Todos", e.target.id);
     await deleteDoc(taskRef);
+    console.log(e)
     getTodos();
   };
 
