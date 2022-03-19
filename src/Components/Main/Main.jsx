@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import styles from "./Main.module.scss";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Main = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,6 +39,17 @@ const Main = () => {
       </p>
       {showLogin && <Login />}
       {showRegister && <Register />}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </main>
   );
 };

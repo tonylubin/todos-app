@@ -4,6 +4,7 @@ import { app } from "../../firebase";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
+import { toast } from "react-toastify";
 
 const SignOut = () => {
   const user = useContext(UserContext);
@@ -16,7 +17,16 @@ const SignOut = () => {
     signOut(auth)
       .then(() => {
         user.setCurrentUser();
-        alert("You've successfully logged out");
+        toast.success("You've successfully signed out", {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+        });
         navigate("/");
       })
       .catch((error) => {
