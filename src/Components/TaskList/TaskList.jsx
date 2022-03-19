@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import styles from './TaskList.module.scss'
 import {
   collection,
@@ -11,14 +11,17 @@ import { db } from "../../firebase";
 import Todo from "../Todo/Todo";
 import UpdateForm from "../UpdateForm/UpdateForm";
 
-const TaskList = ({ taskItem }) => {
+
+const TaskList = ({ taskItem, userInfo }) => {
+  
   const [todosList, setTodosList] = useState();
   const [showUpdate, setShowUpdate] = useState(false);
   const [updateId, setUpdateId] = useState();
-
+  
   // GET  - TODOS FROM DATABASE (store in array variable)
-  const getTodos = async () => {
-    await getDocs(collection(db, "Todos")).then((response) => {
+  const getTodos = useCallback(async () => {
+    if(userInfo.currentUser){
+    await getDocs(collection(db, "Users", userInfo.currentUser, "tasks")).then((response) => {
       let dbList = [];
       response.forEach((doc) =>
         dbList.push({
@@ -29,22 +32,24 @@ const TaskList = ({ taskItem }) => {
       ); 
       setTodosList(dbList);
     });
-  };
-
+  }},[userInfo.currentUser]); 
+  // if conditon check for only when a user is "signed in", in order to prevent unresolved
+  // promise when "logging out"
+  // useCallback - to prevent infinite loop rerendering due to useEffect getTodos dependency
+  
   //  Call  - for list of todos when a task is added
   useEffect(() => {
-    getTodos();
-  }, [taskItem]);
-
+    getTodos()
+  },[getTodos,taskItem]);
+  
   // DELETE - TODO
   const deleteTask = async (e) => {
     // document reference
-    const taskRef = doc(db, "Todos", e.target.id);
+    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", e.target.id);
     await deleteDoc(taskRef);
-    console.log(e)
     getTodos();
   };
-
+  
   // Display update(input) box & grab todo ID 
   const showUpdateInput = async (e) => {
     setShowUpdate(!showUpdate);
@@ -55,36 +60,36 @@ const TaskList = ({ taskItem }) => {
   const updateTask = async (e) => {
     e.preventDefault();
     let updatedText = e.target.elements[0].value;
-    const taskRef = doc(db, "Todos", updateId);
+    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", updateId);
     await updateDoc(taskRef, { todo: updatedText });
     setShowUpdate(!showUpdate);
     getTodos();
   };
-
+  
   // UPDATE - TODO (UN)COMPLETED
   const taskCompleted = async (e) => {
-    const taskRef = doc(db, "Todos", e.target.id);
+    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", e.target.id);
     await updateDoc(taskRef, { completed: e.target.checked });
     getTodos();
   };
-
+  
   return (
     <>
       {showUpdate ? (
         <UpdateForm
-          onSubmit={updateTask}
-          type="text"
-          placeholder="Update your task here..."
+        onSubmit={updateTask}
+        type="text"
+        placeholder="Update your task here..."
         />
-      ) : null}
+        ) : null}
       <ul className={showUpdate ? styles.todoListShow : styles.todoListHide}>
         {todosList &&
           todosList.map((todoItem, index) => (
             <Todo
-              key={index}
-              id={todoItem.id}
-              todo={todoItem.todo}
-              complete={todoItem.completed}
+            key={index}
+            id={todoItem.id}
+            todo={todoItem.todo}
+            complete={todoItem.completed}
               onClickDelete={deleteTask}
               onClickEdit={showUpdateInput}
               onChange={taskCompleted}

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "../Form/Form";
 import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../firebase.js';
+import { UserContext } from "../../App";
 
 const Register = () => {
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
   const handleOnClick = (e) => {
 
@@ -17,8 +19,9 @@ const Register = () => {
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user.email;
-        alert(`Thank you for registering as a user with the email: ${user}`)
+        user.setCurrentUser(userCredential.user.uid);
+        const userGreetingName = userCredential.user.email;
+        alert(`Thank you for registering as a user with the email: ${userGreetingName}`)
       })
       .catch((error) => {
         const errorCode = error.code;

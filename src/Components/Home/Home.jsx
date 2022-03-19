@@ -1,14 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { db } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import TaskList from '../TaskList/TaskList';
 import styles from './Home.module.scss';
 import TaskForm from '../TaskForm/TaskForm';
+import { UserContext } from '../../App';
 
-const Home = () => {  
+const Home = () => {
   
+  const user = useContext(UserContext);
+      
   const [hasTaskItem, setHasTaskItem] = useState(false);
-  
+   
   // Reference(using "useRef") -  to input element
   const inputElement = useRef();
   
@@ -22,7 +25,7 @@ const Home = () => {
     } else {
       greeting = "Good Evening";
     }
-
+    
   // CREATE - TODO
   const createTask = (e) => {      
     e.preventDefault();
@@ -32,16 +35,14 @@ const Home = () => {
       completed: false,
   }
 
-    const usersCollection = collection(db, "Todos");
-    addDoc(usersCollection, task)
+    const userDocRef = collection(db, "Users", user.currentUser, "tasks");
+    addDoc(userDocRef, task)
     setHasTaskItem(!hasTaskItem)
 
     // form reset to initial values
     inputElement.current.form.reset();
     setHasTaskItem(!hasTaskItem);
-  }  
-
-
+  }
 
   return (
       <main className={styles.homepage}>
@@ -51,7 +52,7 @@ const Home = () => {
           </p>
           <TaskForm type="text" placeholder="Add your task here..." onSubmit={createTask} domRef={inputElement}/>
           <section className={styles.tasklistSection}>
-             <TaskList taskItem={hasTaskItem} />
+             <TaskList taskItem={{hasTaskItem, setHasTaskItem}} userInfo={user} />
           </section>
       </main>
   )

@@ -1,9 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow only authenticated content owners access
-    match /some_collection/{userId}/{documents=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId
+    match /Users/{userId}/tasks/{task} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
   }
 }
+
+// make matches to document (not collection for security rules)
+// matches subcollection path & only if userId variable is equal to authenticated user
+// using the uid property ==> User uid must match Document uid
