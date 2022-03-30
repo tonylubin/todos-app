@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
@@ -6,8 +6,8 @@ import Form from "../Form/Form";
 import { UserContext } from "../../App";
 
 const Login = () => {
+
   const user = useContext(UserContext);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   // page navigation (router method)
   const navigate = useNavigate();
@@ -30,9 +30,6 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        if (email.length < 1) {
-          setErrorMessage(true);
-        }
       });
   };
 
@@ -44,7 +41,6 @@ const Login = () => {
         action="Login"
         onClick={handleOnClick}
       />
-      {errorMessage ? <p>Please enter a valid email address</p> : null}
     </>
   );
 };

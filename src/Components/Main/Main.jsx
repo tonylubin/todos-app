@@ -41,7 +41,7 @@ const Main = () => {
       {showRegister && <Register />}
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2500}
         hideProgressBar
         newestOnTop={false}
         closeOnClick={false}

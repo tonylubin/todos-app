@@ -33,6 +33,8 @@ A User can update a todo via:
 All todo CRUD interactions are performed in a useEffect with async/await callback functions to fetch
 the data from database and displayed as a list to the user.
 
+Added react-toastify module to change browser alert function 
+
 Navigation of the app is performed with Routes provided by react-router module
 
 
