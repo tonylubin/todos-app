@@ -39,5 +39,7 @@ Navigation of the app is performed with Routes provided by react-router module
 VISIT:
 
 To use app either register or use details below:
+
 email: example@example.com
+
 password: password
