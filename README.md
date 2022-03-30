@@ -40,7 +40,7 @@ Created a function to display a greeting based on the time of day e.g 'Good Even
 Navigation of the app is performed with Routes provided by react-router module
 
 
-VISIT:  https://tonylubin.github.io/todos-app/
+VISIT:  https://mytodosapp-4e40f.firebaseapp.com/
 
 To use app either register or use details below:
 
