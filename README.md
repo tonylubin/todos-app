@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# A Todos App #
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A mini project to showcase the skills learnt on the software development course
 
-## Available Scripts
+Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS with CRUD operations
 
-In the project directory, you can run:
+### Design/Style ###
 
-### `npm start`
+Designed with a clean modern UI utlizing three main colours.
+Imported icons fron FontAwesome and styled to colour design palette.
+Interaction is designated by a contrasting colour for more visual immediacy
+e.g. checkbox and buttons are the same colour (actions)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Functionality ###
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Able to register as a User and subsequently Log in with functionality from Firebase
 
-### `npm test`
+- created a registration and log in form that is displayed only by clicking a corresponding link
+- used sign in/create user with email/password authentication from Firebase
+- createContext/useContext utilised for storing user info to use throught app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To store a user's todo(data) used Firestore and each user is assigned their own document
+in the collection DB, with nested document and sub/collection pattern.
 
-### `npm run build`
+- wrote Firestore rules so that only authenticated users can log out/in and ONLY view their OWN data.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A User can update a todo via:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- text input field
+- click the checkbox to show the todo as complete, which is shown with a text line-through
+- DELETE a todo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All todo CRUD interactions are performed in a useEffect with async/await callback functions to fetch
+the data from database and displayed as a list to the user.
 
-### `npm run eject`
+Navigation of the app is performed with Routes provided by react-router module
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+VISIT:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To use app either register or use details below:
+email: example@example.com
+password: password
