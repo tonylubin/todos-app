@@ -36,7 +36,7 @@ the data from database and displayed as a list to the user.
 Navigation of the app is performed with Routes provided by react-router module
 
 
-VISIT:
+VISIT:  https://tonylubin.github.io/todos-app/
 
 To use app either register or use details below:
 
