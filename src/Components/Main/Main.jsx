@@ -27,7 +27,7 @@ const Main = () => {
         A simple todos app to keep track of all those fun or essential tasks
         that need to be done (even begrudgingly!!!)
       </p>
-      <p>
+      <p className={styles.mainPage__description}>
         Please{" "}
         <span id="login-text" onClick={revealForm}>
           LOGIN

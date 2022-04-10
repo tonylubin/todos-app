@@ -3,6 +3,10 @@
     width: 80vw;
     margin: 4rem auto 0 auto;
     text-align: start;
+
+    &__description {
+        margin: 1rem 0;
+    }
 }
 
 .mainPage > h1 {
