@@ -10,6 +10,7 @@ Designed with a clean modern UI utlizing three main colours.
 Imported icons fron FontAwesome and styled to colour design palette.
 Interaction is designated by a contrasting colour for more visual immediacy
 e.g. checkbox and buttons are the same colour (actions)
+Responsive mobile first design
 
 ### Functionality ###
 
