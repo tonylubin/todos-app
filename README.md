@@ -33,12 +33,14 @@ A User can update a todo via:
 All todo CRUD interactions are performed in a useEffect with async/await callback functions to fetch
 the data from database and displayed as a list to the user.
 
-Added react-toastify module to change browser alert function 
+Added react-toastify module to change browser alert function
+
+Created a function to display a greeting based on the time of day e.g 'Good Evening'
 
 Navigation of the app is performed with Routes provided by react-router module
 
 
-VISIT:  https://tonylubin.github.io/todos-app/
+VISIT:  https://mytodosapp-4e40f.firebaseapp.com/
 
 To use app either register or use details below:
 
