@@ -1,11 +1,11 @@
 .mainPage {
     height: 85vh;
-    width: 50vw;
-    margin: 30px auto;
+    width: 80vw;
+    margin: 4rem auto 0 auto;
     text-align: start;
 }
 
-.mainPage > h1, p {
+.mainPage > h1 {
     margin-bottom: 1rem;
 }
 
@@ -15,4 +15,10 @@ span {
 
 span:hover {
     cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .mainPage {
+        width: 50vw;
+    }
 }

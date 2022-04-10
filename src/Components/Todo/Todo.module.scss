@@ -4,7 +4,7 @@
     padding: 0.5rem 1rem;
     list-style: none;
     background-color: #2b2a33;
-    width: 500px;
+    width: 100%;
     height: auto;
     margin-bottom: 1rem;
     gap: 2.5rem;
@@ -42,3 +42,8 @@ input[type="checkbox"]:checked {
     accent-color: #e58181;
 }
 
+@media (min-width: 1024px) {
+    .listItem {
+        width: 500px;
+    }
+}
