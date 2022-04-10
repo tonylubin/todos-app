@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 80vw;
+    margin: 4rem auto;
 }
 
 .homepage > p {
@@ -11,4 +13,11 @@
 
 .tasklistSection {
     margin-top: 2rem;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .tasklistSection {
+        width: 500px;
+    }
 }
