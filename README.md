@@ -27,7 +27,7 @@ in the collection DB, with nested document and sub/collection pattern.
 
 A User can update a todo via:
 
-- text input field
+- text input field (used React Hook - useRef, for DOM reference input value)  
 - click the checkbox to show the todo as complete, which is shown with a text line-through
 - DELETE a todo
 
