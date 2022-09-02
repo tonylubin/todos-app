@@ -4,6 +4,22 @@ A mini project to showcase the skills learnt on the software development course
 
 Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS with CRUD operations
 
+<br>
+
+---
+
+<br>
+
+<div align="center">
+    <img src="./todos-demo.gif" alt="todos app">
+</div>
+
+<br>
+
+---
+
+<br>
+
 ### Design/Style ###
 
 Designed with a clean modern UI utlizing three main colours.
@@ -40,6 +56,11 @@ Created a function to display a greeting based on the time of day e.g 'Good Even
 
 Navigation of the app is performed with Routes provided by react-router module
 
+<br>
+
+---
+
+<br>
 
 VISIT:  https://mytodosapp-4e40f.firebaseapp.com/
 
