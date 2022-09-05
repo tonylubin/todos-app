@@ -11,7 +11,7 @@ Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS wit
 <br>
 
 <div align="center">
-    <img src="./todos-demo.gif" alt="todos app">
+    <img src="./todos-app-demo.gif" alt="todos app">
 </div>
 
 <br>
@@ -22,13 +22,19 @@ Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS wit
 
 ### Design/Style ###
 
+<br>
+
 Designed with a clean modern UI utlizing three main colours.
 Imported icons fron FontAwesome and styled to colour design palette.
 Interaction is designated by a contrasting colour for more visual immediacy
 e.g. checkbox and buttons are the same colour (actions)
 Responsive mobile first design
 
+<br>
+
 ### Functionality ###
+
+<br>
 
 Able to register as a User and subsequently Log in with functionality from Firebase
 
@@ -43,7 +49,7 @@ in the collection DB, with nested document and sub/collection pattern.
 
 A User can update a todo via:
 
-- text input field
+- text input field (used React Hook - useRef, for DOM reference input value)  
 - click the checkbox to show the todo as complete, which is shown with a text line-through
 - DELETE a todo
 
@@ -62,10 +68,10 @@ Navigation of the app is performed with Routes provided by react-router module
 
 <br>
 
-VISIT:  https://mytodosapp-4e40f.firebaseapp.com/
+VISIT: &nbsp; https://mytodosapp-4e40f.firebaseapp.com/
 
 To use app either register or use details below:
 
-email: example@example.com
+email: &nbsp; `example@example.com`
 
-password: password
+password: &nbsp; `password`
