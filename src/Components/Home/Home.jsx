@@ -1,14 +1,27 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { db } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import TaskList from '../TaskList/TaskList';
 import styles from './Home.module.scss';
 import TaskForm from '../TaskForm/TaskForm';
 import { UserContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 
 const Home = () => {
   
   const user = useContext(UserContext);
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (isLoggedIn) => {
+      if(!isLoggedIn) {
+        user.setCurrentUser(null);
+        navigate("/");
+      }
+    })  
+  },[auth, user, navigate])
       
   const [hasTaskItem, setHasTaskItem] = useState(false);
    
