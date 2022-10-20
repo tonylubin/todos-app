@@ -14,14 +14,14 @@ const Home = () => {
   const auth = getAuth();
   const navigate = useNavigate();
 
+  // listener for checking logged in status
   useEffect(() => {
     onAuthStateChanged(auth, (isLoggedIn) => {
       if(!isLoggedIn) {
         user.setCurrentUser(null);
-        navigate("/");
       }
     })  
-  },[auth, user, navigate])
+  },[auth, user])
       
   const [hasTaskItem, setHasTaskItem] = useState(false);
    
@@ -58,16 +58,26 @@ const Home = () => {
   }
 
   return (
-      <main className={styles.homepage}>
-          <h1>{greeting}</h1>
-          <p>Let's enter some tasks we need to complete for this upcoming week.
-             Just use the input below to create a todo.   
-          </p>
-          <TaskForm type="text" placeholder="Add your task here..." onSubmit={createTask} domRef={inputElement}/>
-          <section className={styles.tasklistSection}>
-             <TaskList taskItem={{hasTaskItem, setHasTaskItem}} userInfo={user} />
-          </section>
-      </main>
+    <>
+      {user.currentUser ? 
+        (
+          <main className={styles.homepage}>
+            <h1>{greeting}</h1>
+            <p>Let's enter some tasks we need to complete for this upcoming week.
+              Just use the input below to create a todo.   
+            </p>
+            <TaskForm type="text" placeholder="Add your task here..." onSubmit={createTask} domRef={inputElement}/>
+            <section className={styles.tasklistSection}>
+              <TaskList taskItem={{hasTaskItem, setHasTaskItem}} userInfo={user} />
+            </section>
+          </main>          
+        )
+        :
+        (
+          navigate("/")
+        )
+      }
+    </>
   )
 };
 
