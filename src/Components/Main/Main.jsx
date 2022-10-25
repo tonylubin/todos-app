@@ -6,15 +6,19 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Main = () => {
+
+  const [ errorMsg, setErrorMsg ] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
   // condtion to display LOGIN or REGISTER form
   const revealForm = (e) => {
     if (e.target.id === "login-text") {
+      setErrorMsg('');
       setShowRegister(false);
       setShowLogin(!showLogin);
     } else if (e.target.id === "register-text") {
+      setErrorMsg('');
       setShowLogin(false);
       setShowRegister(!showRegister);
     }
@@ -37,8 +41,8 @@ const Main = () => {
           REGISTER
         </span>
       </p>
-      {showLogin && <Login />}
-      {showRegister && <Register />}
+      {showLogin && <Login errorMsg={errorMsg} setErrorMsg={setErrorMsg} />}
+      {showRegister && <Register errorMsg={errorMsg} setErrorMsg={setErrorMsg} />}
       <ToastContainer
         position="top-center"
         autoClose={2500}

@@ -1,59 +1,62 @@
-import React, { useContext } from "react";
+import React from "react";
 import Form from "../Form/Form";
 import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from '../../firebase.js';
-import { UserContext } from "../../App";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from '../../firebase.js';
 import { toast } from "react-toastify";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
+import { cleanUpErrorMsg } from "../../util/functions";
 
-const Register = () => {
-  const navigate = useNavigate();
-  const user = useContext(UserContext);
+
+const Register = ({ errorMsg, setErrorMsg }) => {
+
+  const navigate = useNavigate();;
 
   const handleOnClick = (e) => {
 
     e.preventDefault();
 
-    const email = e.target.form[0].value;
-    const password = e.target.form[1].value;
+    const name = e.target.form['NAME'].value;
+    const email = e.target.form['EMAIL'].value;
+    const password = e.target.form['PASSWORD'].value;
 
-    
-    const auth = getAuth(app);
+
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      user.setCurrentUser(userCredential.user.uid);
-      const userGreetingName = userCredential.user.email;
-      toast.success(`Thank you for registering as a user with the email: ${userGreetingName}`, {
-        position: "top-center",
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored"
+      .then((userCredential) => {
+        updateProfile(userCredential.user, {displayName: name});
+        const userGreetingName = userCredential.user.email;       
+        return userGreetingName;
       })
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
-    if(!email || !password) {
-      navigate("/")
-    } 
-    else {
-      navigate("/home");
-    }
+      .then((userEmail) => {
+        toast.success(`Thank you for registering as a user with the email: ${userEmail}`, {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored"
+        })
+        setTimeout(() => navigate("/home"), 2500); // wait for toastify alert to finish      
+      })
+      .catch ((error) => {
+        setErrorMsg(cleanUpErrorMsg(error.message));
+        console.log("Error Message: ", error.message, "Error Code: ", error.code);
+      })     
   };
 
   return (
-    <Form
-      labelName="EMAIL"
-      inputName="PASSWORD"
-      action="Register"
-      onClick={handleOnClick}
-    />
+    <>
+      <Form
+        name="NAME"
+        labelName="EMAIL"
+        inputName="PASSWORD"
+        action="Register"
+        onClick={handleOnClick}
+      />
+      { errorMsg && <ErrorMsg message={errorMsg} /> }
+    </>
   );
 };
 

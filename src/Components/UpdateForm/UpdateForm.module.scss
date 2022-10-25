@@ -1,26 +1,24 @@
 .updateForm {
   list-style: none;
-  width: 500px;
-  height: 65px;
+  width: 100%;
   background-color: #2b2a33;
-  padding: 0 1rem;
-  margin-bottom: 3rem;
+  padding: 1rem;
   border: 1px solid #7e7a7a;
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-top: 17px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
   -webkit-animation: fade-in 1.5s ease-in both;
           animation: fade-in 1.5s ease-in both;
 
   
   &__input {
+    width: 100%;
     background-color: #2b2a33;
     border: none;
-    margin-right: 1rem;
     color: #fff;
     font-size: 1.5rem;
-    flex-grow: 1;
   }
 
   &__input:focus {
@@ -72,5 +70,12 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    
+    .updateForm {
+      flex-wrap: nowrap;
     }
   }

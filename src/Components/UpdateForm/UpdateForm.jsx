@@ -3,12 +3,14 @@ import styles from "./UpdateForm.module.scss";
 
 const UpdateForm = (props) => {
 
+  const { id, onSubmit, type, placeholder } = props;
+
   return (
-    <form className={styles.updateForm} id={props.id} onSubmit={props.onSubmit}>
+    <form className={styles.updateForm} id={id} onSubmit={onSubmit}>
       <input
         className={styles.updateForm__input}
-        type={props.type}
-        placeholder={props.placeholder}
+        type={type}
+        placeholder={placeholder}
         autoFocus
       />
       <button className={styles.updateForm__btn} type="submit">Update

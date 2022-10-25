@@ -1,22 +1,19 @@
-import React, { useContext } from "react";
-import { getAuth, signOut } from "firebase/auth";
-import { app } from "../../firebase";
+import React from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
 import { toast } from "react-toastify";
 
 const SignOut = () => {
-  const user = useContext(UserContext);
 
   // for redirecting to another page(root/main page)
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    const auth = getAuth(app);
+
     signOut(auth)
       .then(() => {
-        user.setCurrentUser();
         toast.success("You've successfully signed out", {
           position: "top-center",
           autoClose: 2500,

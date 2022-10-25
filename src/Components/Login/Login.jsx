@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 import Form from "../Form/Form";
-import { UserContext } from "../../App";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
+import { cleanUpErrorMsg } from "../../util/functions";
 
-const Login = () => {
-
-  const user = useContext(UserContext);
+const Login = ({ errorMsg, setErrorMsg }) => {
+  
 
   // page navigation (router method)
   const navigate = useNavigate();
@@ -16,20 +16,17 @@ const Login = () => {
     e.preventDefault();
 
     // grab email & password from form element
-    const email = e.target.form[0].value;
-    const password = e.target.form[1].value;
+    const email = e.target.form["EMAIL"].value;
+    const password = e.target.form["PASSWORD"].value;
 
     // instance of firebase auth & email/pwd authentication for logging in
-    const auth = getAuth(app);
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        user.setCurrentUser(userCredential.user.uid);
+      .then(() => {
         navigate("/home");
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+      .catch((error) => {        
+        setErrorMsg(cleanUpErrorMsg(error.message));
+        console.log("Error Message: ", error.message, "Error Code: ", error.code);
       });
   };
 
@@ -41,6 +38,7 @@ const Login = () => {
         action="Login"
         onClick={handleOnClick}
       />
+      { errorMsg && <ErrorMsg message={errorMsg} /> }
     </>
   );
 };

@@ -17,25 +17,24 @@ const TaskList = ({ taskItem, userInfo }) => {
   const [todosList, setTodosList] = useState();
   const [showUpdate, setShowUpdate] = useState(false);
   const [updateId, setUpdateId] = useState();
+
+  // User collection id
+  const userId = userInfo.uid;
   
-  // GET  - TODOS FROM DATABASE (store in array variable)
-  const getTodos = useCallback(async () => {
-    if(userInfo.currentUser){
-    await getDocs(collection(db, "Users", userInfo.currentUser, "tasks")).then((response) => {
-      let dbList = [];
-      response.forEach((doc) =>
-        dbList.push({
-          id: doc.id,
-          todo: doc.data().todo,
-          completed: doc.data().completed,
-        })
-      ); 
-      setTodosList(dbList);
-    });
-  }},[userInfo.currentUser]); 
-  // if conditon check for only when a user is "signed in", in order to prevent unresolved
-  // promise when "logging out"
+  // GET  - TODOS FROM DATABASE (store in array variable) 
   // useCallback - to prevent infinite loop rerendering due to useEffect getTodos dependency
+  const getTodos = useCallback(async () => {   
+    let docsResponse = await getDocs(collection(db, "Users", userId, "tasks"));
+    let dbList = [];
+    docsResponse.forEach((doc) => {
+      dbList.push({
+        id: doc.id,
+        todo: doc.data().todo,
+        completed: doc.data().completed,
+      });
+    });
+    setTodosList(dbList);
+  },[userId]); 
   
   //  Call  - for list of todos when a task is added
   useEffect(() => {
@@ -45,7 +44,7 @@ const TaskList = ({ taskItem, userInfo }) => {
   // DELETE - TODO
   const deleteTask = async (e) => {
     // document reference
-    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", e.target.id);
+    const taskRef = doc(db, "Users", userId, "tasks", e.target.id);
     await deleteDoc(taskRef);
     getTodos();
   };
@@ -60,7 +59,7 @@ const TaskList = ({ taskItem, userInfo }) => {
   const updateTask = async (e) => {
     e.preventDefault();
     let updatedText = e.target.elements[0].value;
-    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", updateId);
+    const taskRef = doc(db, "Users", userId, "tasks", updateId);
     await updateDoc(taskRef, { todo: updatedText });
     setShowUpdate(!showUpdate);
     getTodos();
@@ -68,7 +67,7 @@ const TaskList = ({ taskItem, userInfo }) => {
   
   // UPDATE - TODO (UN)COMPLETED
   const taskCompleted = async (e) => {
-    const taskRef = doc(db, "Users", userInfo.currentUser, "tasks", e.target.id);
+    const taskRef = doc(db, "Users", userId, "tasks", e.target.id);
     await updateDoc(taskRef, { completed: e.target.checked });
     getTodos();
   };

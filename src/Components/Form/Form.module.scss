@@ -3,6 +3,10 @@
     flex-direction: column;
     width:fit-content;
 
+    label {
+        margin-bottom: 0.5rem;
+    }
+
     &__button {
         width:fit-content;
         padding: 0.4rem 1rem;
@@ -14,6 +18,7 @@
         border: none;
         border-radius: 10px;
         color: #fff;
+        cursor: pointer;
     }
 
     &__button:active {
@@ -23,5 +28,6 @@
     &__input {
         height: 1.5rem;
         padding-left: 5px;
+        margin-bottom: 1rem;
     }
 }

@@ -5,10 +5,12 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 const TaskForm = (props) => {
 
+  const { id, type, placeholder, value, domRef, onSubmit } = props;
+
   return (
-    <form className={styles.taskForm} id={props.id}>
-        <input className={styles.taskForm__input} type={props.type} placeholder={props.placeholder} defaultValue={props.value} ref={props.domRef}/>
-        <span onClick={props.onSubmit}><FontAwesomeIcon icon={faPlusCircle} /></span>
+    <form className={styles.taskForm} id={id}>
+        <input className={styles.taskForm__input} type={type} placeholder={placeholder} defaultValue={value} ref={domRef}/>
+        <span onClick={onSubmit}><FontAwesomeIcon icon={faPlusCircle} /></span>
     </form>
   )
 };

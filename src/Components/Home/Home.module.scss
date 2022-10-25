@@ -4,12 +4,17 @@
     flex-direction: column;
     width: 80vw;
     margin: 4rem auto;
+
+    > p {
+        margin-bottom: 2rem;
+        margin-top: 0.5rem;
+    }
+
+    > h1 {
+        white-space: pre-line;
+    }
 }
 
-.homepage > p {
-    margin-bottom: 2rem;
-    margin-top: 0.5rem;
-}
 
 .tasklistSection {
     margin-top: 2rem;
