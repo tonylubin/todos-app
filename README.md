@@ -67,6 +67,8 @@ Navigation of the app is performed with Routes provided by react-router v6 modul
 - use of `Navigate` & `usenavigate` for redirection
 - created Private/protected route - user only view, redirects if a user isn't logged in
 
+Error handling for authentication procedures by displaying `auth error code/message` to the user
+
 <br>
 
 ---
