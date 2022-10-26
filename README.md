@@ -11,7 +11,7 @@ Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS wit
 <br>
 
 <div align="center">
-    <img src="./todos-app-demo.gif" alt="todos app">
+    <img src="./mytodos-app-gif-demo.gif" alt="todos app">
 </div>
 
 <br>
@@ -39,8 +39,10 @@ Responsive mobile first design
 Able to register as a User and subsequently Log in with functionality from Firebase
 
 - created a registration and log in form that is displayed only by clicking a corresponding link
-- used sign in/create user with email/password authentication from Firebase
-- createContext/useContext utilised for storing user info to use throught app
+- used `sign in/create user with email/password authentication` from Firebase
+- used `updateProfile` for adding & displaying `displayName` as a greeting message
+- `createContext/useContext` utilised for storing user info to use throught app
+- `onauthstatechange` for obsevering current user status
 
 To store a user's todo(data) used Firestore and each user is assigned their own document
 in the collection DB, with nested document and sub/collection pattern.
@@ -49,18 +51,21 @@ in the collection DB, with nested document and sub/collection pattern.
 
 A User can update a todo via:
 
-- text input field (used React Hook - useRef, for DOM reference input value)  
+- text input field (used React Hook - `useRef`, for DOM reference input value)  
 - click the checkbox to show the todo as complete, which is shown with a text line-through
 - DELETE a todo
 
-All todo CRUD interactions are performed in a useEffect with async/await callback functions to fetch
+All todo CRUD interactions are performed in a `useEffect` with `async/await` callback functions to fetch
 the data from database and displayed as a list to the user.
 
-Added react-toastify module to change browser alert function
+Added `react-toastify` module to change browser alert function
 
 Created a function to display a greeting based on the time of day e.g 'Good Evening'
 
-Navigation of the app is performed with Routes provided by react-router module
+Navigation of the app is performed with Routes provided by react-router v6 module
+
+- use of `Navigate` & `usenavigate` for redirection
+- created Private/protected route - user only view, redirects if a user isn't logged in
 
 <br>
 
