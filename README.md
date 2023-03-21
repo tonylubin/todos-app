@@ -1,8 +1,6 @@
 # A Todos App #
 
-A mini project to showcase the skills learnt on the software development course
-
-Built a todos app using React, BEM, Sass, Firestore and Firebase as the BaaS with CRUD operations
+Built a todos/tasks app using React, BEM, Sass, Firestore and Firebase as the BaaS with CRUD operations for tracking of tasks. Each user must register/login to use the app.
 
 <br>
 
